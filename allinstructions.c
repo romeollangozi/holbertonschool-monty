@@ -36,8 +36,20 @@ void pall(stack_t **stack,__attribute__((unused)) unsigned int line_number)
 }
 
 void handleErrors(char *opcode, char *number, void (*function)(stack_t **stack, unsigned int line_number), int line)
-{
-	if ((strcmp(opcode, "push") == 0) && strspn(number, "+-0123456789") == 0)
+{	
+
+	int hasAlpha = 0;
+	char *numberCopy = number;
+	while (*numberCopy)
+	{
+		if (isalpha(*numberCopy))
+		{
+			hasAlpha = 1;
+			break;
+		}
+		numberCopy++;
+	}
+	if ((strcmp(opcode, "push") == 0) && ((strspn(number, "+-0123456789") == 0) || hasAlpha))
 	{
 		fprintf(stderr, "L%i: usage: push integer\n", line);
 		exit(EXIT_FAILURE);

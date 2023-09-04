@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 			line++;
 			continue;
 		}
-		number = strtok(NULL, " ");
+		number = strtok(NULL, " \n");
 		if (number == NULL)
 			number = "s";
 
