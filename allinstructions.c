@@ -34,3 +34,20 @@ void pall(stack_t **stack,__attribute__((unused)) unsigned int line_number)
 		iterator = iterator->next;
 	}
 }
+
+void handleErrors(char *opcode, char *number, void (*function)(stack_t **stack, unsigned int line_number), int line)
+{
+	if ((strcmp(opcode, "push") == 0) && strspn(number, "+-0123456789") == 0)
+	{
+		fprintf(stderr, "L%i: usage: push integer\n", line);
+		exit(EXIT_FAILURE);
+	}
+	if (function == NULL)
+	{
+		fprintf(stderr, "L%i: unknown instruction %s\n", line, opcode);
+		exit(EXIT_FAILURE);
+	}
+	
+
+}
+

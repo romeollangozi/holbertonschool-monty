@@ -36,5 +36,6 @@ void push(stack_t **stack, unsigned int line_number);
 void (*get_function(char *opcode)) (stack_t **stack, unsigned int line_number);
 extern int line;
 void pall(stack_t **stack,__attribute__((unused))  unsigned int line_number);
+void handleErrors(char *opcode, char *number, void (*function)(stack_t **stack, unsigned int line_number), int line);
 #endif
 

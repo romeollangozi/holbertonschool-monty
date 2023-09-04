@@ -22,24 +22,18 @@ int main(int argc, char **argv)
 	}
 	while(fgets(command, MAX_SIZE, file) != NULL)
 	{
-		opcode = strtok(command, " \n\t");
+		opcode = strtok(command, " \n");
 		if (opcode == NULL)
 		{
 			line++;
 			continue;
 		}
 		number = strtok(NULL, " ");
-		if ((strcmp(opcode, "push") == 0) && opcode == NULL)
-		{
-			fprintf(stderr, "L%i: usage: push integer\n", line);
-			exit(EXIT_FAILURE);
-		}
+		if (number == NULL)
+			number = "s";
+
 		function = get_function(opcode);
-		if (function == NULL)
-		{
-			fprintf(stderr, "L%i: unknown instruction %s\n", line, opcode);
-			exit(EXIT_FAILURE);
-		}
+		handleErrors(opcode, number, function, line);
 		function(&head, atoi(number));
 		line++;
 	}
