@@ -40,6 +40,9 @@ void handleErrors(char *opcode, char *number,
 void (*function)(stack_t **stack, unsigned int line_number, int line),
 int line, stack_t *stack, FILE *file);
 void pint(stack_t **stack, unsigned int line_number, int line);
+void pop(stack_t **stack, unsigned int line_number, int line);
+void swap(stack_t **stack, unsigned int line_number, int line);
+void add(stack_t **stack, unsigned int line_number, int line);
 void free_stack(stack_t *stack);
 #endif
 

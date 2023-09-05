@@ -13,6 +13,9 @@ void (*get_function(char *opcode)) (stack_t **stack,
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
 		{NULL, NULL}
 	};
 	while (functions[i].opcode)
