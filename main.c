@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 	int line = 1;
 	stack_t *head = NULL;
 	char *opcode = NULL, *number = "0", command[MAX_SIZE];
-	void (*function)(stack_t **stack, unsigned int line_number) = NULL;
+	void (*function)(stack_t **stack, unsigned int line_number, int line) = NULL;
 
 	if (argc != 2)
 	{
@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 
 		function = get_function(opcode);
 		handleErrors(opcode, number, function, line, head, file);
-		function(&head, atoi(number));
+		function(&head, atoi(number), line);
 		line++;
 	}
 	fclose(file);

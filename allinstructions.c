@@ -3,10 +3,12 @@
  * push - function that pushes a new node into the stack
  * @stack: stack
  *@line_number: line number
+ *@line: line
  */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number, int line)
 {
 	stack_t *node = malloc(sizeof(stack_t));
+	(void) line;
 
 	if (node == NULL)
 	{
@@ -32,11 +34,14 @@ void push(stack_t **stack, unsigned int line_number)
  * pall - function that prints all the elements of the stack
  * @stack: stack
  * @line_number: line number
+ * @line: line
  */
-void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+void pall(stack_t **stack, unsigned int line_number, int line)
 {
 	stack_t *iterator = *stack;
+	(void) line;
 	(void) line_number;
+
 	if (*stack == NULL)
 		return;
 	while (iterator != NULL)
@@ -55,11 +60,12 @@ void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
  *@file: file
  */
 void handleErrors(char *opcode, char *number,
-void (*function)(stack_t **stack, unsigned int line_number),
+void (*function)(stack_t **stack, unsigned int line_number, int line),
 int line, stack_t *stack, FILE *file)
 {
 	int hasAlpha = 0;
 	char *numberCopy = number;
+	(void) line;
 
 	while (*numberCopy)
 	{
@@ -99,5 +105,23 @@ void free_stack(stack_t *stack)
 		free_stack(stack->next);
 	}
 	free(stack);
+}
+/**
+ * pint - function tha prints the value at the top of the stack
+ * @stack: stack
+ * @line_number: line_number
+ * @line: line
+ */
+
+void pint(stack_t **stack, unsigned int line_number, int line)
+{
+	(void) line_number;
+
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%i: can't pint, stack empty\n", line);
+		exit(EXIT_FAILURE);
+	}
+	printf("%i\n", (*stack)->n);
 }
 
