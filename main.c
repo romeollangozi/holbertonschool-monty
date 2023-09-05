@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 	while (fgets(command, MAX_SIZE, file) != NULL)
 	{
 		opcode = strtok(command, " \n");
-		if (opcode == NULL)
+		if (opcode == NULL || strcmp(opcode, "nop") == 0)
 		{
 			line++;
 			continue;
