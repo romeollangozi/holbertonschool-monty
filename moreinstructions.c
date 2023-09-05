@@ -13,7 +13,7 @@ void pop(stack_t **stack, unsigned int line_number, int line)
 
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%i: can't pop an stack empty\n", line);
+		fprintf(stderr, "L%i: can't pop an empty stack\n", line);
 		exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->next;
@@ -72,7 +72,7 @@ void add(stack_t **stack, unsigned int line_number, int line)
 
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%i: can't swap, stack too short\n", line);
+		fprintf(stderr, "L%i: can't add, stack too short\n", line);
 		exit(EXIT_FAILURE);
 	}
 	while (tmp != NULL)
@@ -83,7 +83,7 @@ void add(stack_t **stack, unsigned int line_number, int line)
 
 	if (length < 2)
 	{
-		fprintf(stderr, "L%i: can't swap, stack too short\n", line);
+		fprintf(stderr, "L%i: can't add, stack too short\n", line);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
